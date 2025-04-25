@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>EveryDay IS Summer</title>
+  <title>คำนวณไซส์บราญี่ปุ่นอัตโนมัติ</title>
   <style>
     body {
       margin: 0;
@@ -13,7 +13,7 @@
       padding: 20px;
     }
     .container {
-      max-width: 400px;
+      max-width: 420px;
       margin: auto;
       background: #fff;
       padding: 20px;
@@ -58,6 +58,27 @@
       font-weight: bold;
       text-align: center;
       font-size: 18px;
+      color: #e91e63;
+    }
+    .credit {
+      text-align: center;
+      font-size: 14px;
+      color: #aaa;
+      margin-top: 30px;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 30px;
+      background: #fffafc;
+    }
+    th, td {
+      padding: 10px;
+      border: 1px solid #f5c6d6;
+      text-align: center;
+    }
+    th {
+      background-color: #ffe0eb;
     }
     @media (max-width: 480px) {
       body {
@@ -71,7 +92,7 @@
 </head>
 <body>
   <div class="container">
-    <h2>🔍 EveryDay IS Summer</h2>
+    <h2>🔍 everydayissummer</h2>
 
     <label for="underbust">📏 รอบใต้อก (cm):</label>
     <input type="number" id="underbust" placeholder="เช่น 74">
@@ -82,6 +103,27 @@
     <button onclick="calculateSize()">คำนวณไซส์</button>
 
     <div id="result"></div>
+
+    <table>
+      <thead>
+        <tr>
+          <th>ไซส์ไทย</th>
+          <th>บราญี่ปุ่นที่แนะนำ</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>30</td><td>A65, A70, B70</td></tr>
+        <tr><td>32</td><td>B65, B70, B75, C65</td></tr>
+        <tr><td>34</td><td>C70, C75, D65</td></tr>
+        <tr><td>36</td><td>D70, D75, E65</td></tr>
+        <tr><td>38</td><td>E70, E75, F75</td></tr>
+        <tr><td>40</td><td>E75, E80, F80, F85, G75</td></tr>
+        <tr><td>42</td><td>F90, G80, G85, H90</td></tr>
+        <tr><td>44</td><td>G100, H90, G85</td></tr>
+      </tbody>
+    </table>
+
+    <div class="credit">✨ Powered by <strong>everydayissummer.store</strong> ✨</div>
   </div>
 
   <script>
@@ -112,7 +154,10 @@
       else cup = "ไม่สามารถระบุคัพได้";
 
       const result = document.getElementById("result");
-      if (band.includes("ไม่พบ") || cup.includes("ไม่สามารถ")) {
+
+      if (band === "75" && cup === "C") {
+        result.innerHTML = `🌸 <strong>แนะนำบราญี่ปุ่น:</strong> D70, D75, E65<br>☕ <em>“ถ้าชอบหลวมนิด ให้เลือก D75, ถ้าชอบพอดีลอง D70 ค่ะ”</em>`;
+      } else if (band.includes("ไม่พบ") || cup.includes("ไม่สามารถ")) {
         result.innerText = "⚠️ ไม่สามารถระไซส์ได้ โปรดตรวจสอบค่าที่กรอก";
       } else {
         result.innerText = `✅ ไซส์บราญี่ปุ่นอัตโนมัติของคุณคือ: ${band}${cup}`;
