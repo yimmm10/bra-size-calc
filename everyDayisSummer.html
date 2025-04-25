@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Everyday IS Summer</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Kanit', sans-serif;
+      background: linear-gradient(135deg, #ffe4ec, #fff5f8);
+      color: #333;
+      padding: 20px;
+    }
+    .container {
+      max-width: 420px;
+      margin: auto;
+      background: #fff;
+      padding: 20px;
+      border-radius: 20px;
+      box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+    }
+    h2 {
+      text-align: center;
+      color: #e91e63;
+    }
+    label {
+      margin-top: 15px;
+      display: block;
+      font-weight: 500;
+    }
+    input {
+      width: 100%;
+      padding: 10px;
+      border: 2px solid #f8c1d1;
+      border-radius: 10px;
+      margin-top: 5px;
+      font-size: 16px;
+      box-sizing: border-box;
+    }
+    button {
+      width: 100%;
+      padding: 12px;
+      margin-top: 20px;
+      background-color: #e91e63;
+      color: white;
+      border: none;
+      border-radius: 12px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+    button:hover {
+      background-color: #d81b60;
+    }
+    #result {
+      margin-top: 20px;
+      font-weight: bold;
+      text-align: center;
+      font-size: 18px;
+      color: #e91e63;
+    }
+    .credit {
+      text-align: center;
+      font-size: 14px;
+      color: #aaa;
+      margin-top: 30px;
+    }
+    .qrcodes {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      margin-top: 10px;
+    }
+    .qrcode {
+      text-align: center;
+      font-size: 12px;
+    }
+    .qrcode img {
+      width: 90px;
+      height: 90px;
+      border: 4px solid #ffe4ec;
+      border-radius: 10px;
+      box-shadow: 0 5px 10px rgba(0,0,0,0.05);
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 30px;
+      background: #fffafc;
+    }
+    th, td {
+      padding: 10px;
+      border: 1px solid #f5c6d6;
+      text-align: center;
+    }
+    th {
+      background-color: #ffe0eb;
+    }
+    @media (max-width: 480px) {
+      body {
+        padding: 10px;
+      }
+      .container {
+        padding: 15px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>🌞 Everyday IS Summer 🌊</h2>
+
+    <label for="underbust">📏 รอบใต้อก (cm):</label>
+    <input type="number" id="underbust" placeholder="เช่น 74">
+
+    <label for="bust">📏 รอบอกบนยอดอก (cm):</label>
+    <input type="number" id="bust" placeholder="เช่น 89">
+
+    <button onclick="calculateSize()">คำนวณไซส์</button>
+
+    <div id="result"></div>
+
+    <table>
+      <thead>
+        <tr>
+          <th>ไซส์ไทย</th>
+          <th>บราญี่ปุ่นที่แนะนำ</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>30</td><td>A65, A70, B70</td></tr>
+        <tr><td>32</td><td>B65, B70, B75, C65</td></tr>
+        <tr><td>34</td><td>C70, C75, D65</td></tr>
+        <tr><td>36</td><td>D70, D75, E65</td></tr>
+        <tr><td>38</td><td>E70, E75, F75</td></tr>
+        <tr><td>40</td><td>E75, E80, F80, F85, G75</td></tr>
+        <tr><td>42</td><td>F90, G80, G85, H90</td></tr>
+        <tr><td>44</td><td>G100, H90, G85</td></tr>
+      </tbody>
+    </table>
+
+    <div class="credit">
+      ✨ Powered by <strong>everydayissummer.store</strong> ✨
+      <div class="qrcode">
+        <img src="https://github.com/yimmm10/bra-size-calc/blob/main/qrcode-payment.jpg" alt="QR Payment">
+        <div>💰 ชำระเงิน</div>
+      </div>      
+      <div class="qrcodes">
+        <div class="qrcode">
+          <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://www.instagram.com/everydayissummer.store/?hl=th" alt="Instagram QR">
+          <div><h2>📷 IG </h2></div>
+        </div>
+        <div class="qrcode">
+          <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://www.tiktok.com/@everydayissummer.store?is_from_webapp=1&sender_device=pc" alt="Tiktok QR">
+          <div><h2>🎥 TikTok </h2></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function calculateSize() {
+      const underbust = parseFloat(document.getElementById("underbust").value);
+      const bust = parseFloat(document.getElementById("bust").value);
+      const diff = bust - underbust;
+
+      let band = "";
+      if (underbust >= 63 && underbust <= 67) band = "65";
+      else if (underbust >= 68 && underbust <= 72) band = "70";
+      else if (underbust >= 73 && underbust <= 77) band = "75";
+      else if (underbust >= 78 && underbust <= 82) band = "80";
+      else if (underbust >= 83 && underbust <= 87) band = "85";
+      else if (underbust >= 88 && underbust <= 92) band = "90";
+      else if (underbust >= 93 && underbust <= 97) band = "95";
+      else band = "ไม่พบไซส์ในช่วงมาตรฐาน";
+
+      let cup = "";
+      if (diff >= 9 && diff < 11.5) cup = "A";
+      else if (diff >= 11.5 && diff < 14) cup = "B";
+      else if (diff >= 14 && diff < 16.5) cup = "C";
+      else if (diff >= 16.5 && diff < 19) cup = "D";
+      else if (diff >= 19 && diff < 21.5) cup = "E";
+      else if (diff >= 21.5 && diff < 24) cup = "F";
+      else if (diff >= 24 && diff < 26.5) cup = "G";
+      else if (diff >= 26.5 && diff < 29) cup = "H";
+      else cup = "ไม่สามารถระบุคัพได้";
+
+      const result = document.getElementById("result");
+
+      if (band === "75" && cup === "C") {
+        result.innerHTML = `🌸 <strong>แนะนำบราญี่ปุ่น:</strong> D70, D75, E65<br>☕ <em>“ถ้าชอบหลวมนิด ให้เลือก D75, ถ้าชอบพอดีลอง D70 ค่ะ”</em>`;
+      } else if (band.includes("ไม่พบ") || cup.includes("ไม่สามารถ")) {
+        result.innerText = "⚠️ ไม่สามารถระไซส์ได้ โปรดตรวจสอบค่าที่กรอก";
+      } else {
+        result.innerText = `✅ ไซส์บราญี่ปุ่นอัตโนมัติของคุณคือ: ${band}${cup}`;
+      }
+    }
+  </script>
+</body>
+</html>
