@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EveryDay IS Summer</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Kanit', sans-serif;
+      background: linear-gradient(135deg, #ffe4ec, #fff5f8);
+      color: #333;
+      padding: 20px;
+    }
+    .container {
+      max-width: 400px;
+      margin: auto;
+      background: #fff;
+      padding: 20px;
+      border-radius: 20px;
+      box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+    }
+    h2 {
+      text-align: center;
+      color: #e91e63;
+    }
+    label {
+      margin-top: 15px;
+      display: block;
+      font-weight: 500;
+    }
+    input {
+      width: 100%;
+      padding: 10px;
+      border: 2px solid #f8c1d1;
+      border-radius: 10px;
+      margin-top: 5px;
+      font-size: 16px;
+      box-sizing: border-box;
+    }
+    button {
+      width: 100%;
+      padding: 12px;
+      margin-top: 20px;
+      background-color: #e91e63;
+      color: white;
+      border: none;
+      border-radius: 12px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+    button:hover {
+      background-color: #d81b60;
+    }
+    #result {
+      margin-top: 20px;
+      font-weight: bold;
+      text-align: center;
+      font-size: 18px;
+    }
+    @media (max-width: 480px) {
+      body {
+        padding: 10px;
+      }
+      .container {
+        padding: 15px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>🔍 EveryDay IS Summer</h2>
+
+    <label for="underbust">📏 รอบใต้อก (cm):</label>
+    <input type="number" id="underbust" placeholder="เช่น 74">
+
+    <label for="bust">📏 รอบอกบนยอดอก (cm):</label>
+    <input type="number" id="bust" placeholder="เช่น 89">
+
+    <button onclick="calculateSize()">คำนวณไซส์</button>
+
+    <div id="result"></div>
+  </div>
+
+  <script>
+    function calculateSize() {
+      const underbust = parseFloat(document.getElementById("underbust").value);
+      const bust = parseFloat(document.getElementById("bust").value);
+      const diff = bust - underbust;
+
+      let band = "";
+      if (underbust >= 63 && underbust <= 67) band = "65";
+      else if (underbust >= 68 && underbust <= 72) band = "70";
+      else if (underbust >= 73 && underbust <= 77) band = "75";
+      else if (underbust >= 78 && underbust <= 82) band = "80";
+      else if (underbust >= 83 && underbust <= 87) band = "85";
+      else if (underbust >= 88 && underbust <= 92) band = "90";
+      else if (underbust >= 93 && underbust <= 97) band = "95";
+      else band = "ไม่พบไซส์ในช่วงมาตรฐาน";
+
+      let cup = "";
+      if (diff >= 9 && diff < 11.5) cup = "A";
+      else if (diff >= 11.5 && diff < 14) cup = "B";
+      else if (diff >= 14 && diff < 16.5) cup = "C";
+      else if (diff >= 16.5 && diff < 19) cup = "D";
+      else if (diff >= 19 && diff < 21.5) cup = "E";
+      else if (diff >= 21.5 && diff < 24) cup = "F";
+      else if (diff >= 24 && diff < 26.5) cup = "G";
+      else if (diff >= 26.5 && diff < 29) cup = "H";
+      else cup = "ไม่สามารถระบุคัพได้";
+
+      const result = document.getElementById("result");
+      if (band.includes("ไม่พบ") || cup.includes("ไม่สามารถ")) {
+        result.innerText = "⚠️ ไม่สามารถระไซส์ได้ โปรดตรวจสอบค่าที่กรอก";
+      } else {
+        result.innerText = `✅ ไซส์บราญี่ปุ่นอัตโนมัติของคุณคือ: ${band}${cup}`;
+      }
+    }
+  </script>
+</body>
+</html>
